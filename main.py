@@ -46,7 +46,7 @@ class App:
             time.sleep(1)
             
             # ซ่อนหน้าต่าง
-            # ctypes.windll.user32.ShowWindow(hWnd, 0)
+            ctypes.windll.user32.ShowWindow(hWnd, 0)
         
         # สามารถใช้โปรแกรมได้
         if self.registered:
