@@ -39,17 +39,17 @@ class App:
             self.setTitle('STARTED')
             self.registered = True
         
-        # ดึง Handle ของหน้าต่าง
-        hWnd = ctypes.windll.kernel32.GetConsoleWindow()
-        if hWnd and self.hideConsole:
-            self.setTitle('HIDING WINDOWS')
-            time.sleep(1)
-            
-            # ซ่อนหน้าต่าง
-            ctypes.windll.user32.ShowWindow(hWnd, 0)
-        
         # สามารถใช้โปรแกรมได้
         if self.registered:
+            # ดึง Handle ของหน้าต่าง
+            hWnd = ctypes.windll.kernel32.GetConsoleWindow()
+            if hWnd and self.hideConsole:
+                self.setTitle('HIDING WINDOWS')
+                time.sleep(1)
+                
+                # ซ่อนหน้าต่าง
+                ctypes.windll.user32.ShowWindow(hWnd, 0)
+            
             i = 0
             
             ipList = ''
