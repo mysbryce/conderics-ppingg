@@ -46,7 +46,7 @@ class App:
             time.sleep(1)
             
             # ซ่อนหน้าต่าง
-            ctypes.windll.user32.ShowWindow(hWnd, 0)
+            # ctypes.windll.user32.ShowWindow(hWnd, 0)
         
         # สามารถใช้โปรแกรมได้
         if self.registered:
@@ -64,19 +64,26 @@ class App:
                     ipList += f' or ip.DstAddr = {ip}'
             
             # ใช้งาน WinDivert
-            with pydivert.WinDivert(f'outbound and ip.DstAddr = {ipList}') as w:
-                for packet in w:
-                    if random.randrange(1, 100) > 90 or i > 0:
-                        i += 1
-                        
-                        if random.randrange(0, 10) > 3:
-                            # หน่วง
-                            time.sleep(random.uniform(0.0075, 0.0175))
-                        
-                        if i == 10:
-                            i = 0
+            try:
+                with pydivert.WinDivert(f'outbound and ip.DstAddr = {ipList}') as w:
+                    for packet in w:
+                        if random.randrange(1, 100) > 90 or i > 0:
+                            i += 1
                             
-                    w.send(packet)
+                            if random.randrange(0, 10) > 3:
+                                # หน่วง
+                                time.sleep(random.uniform(0.0075, 0.0175))
+                            
+                            if i == 10:
+                                i = 0
+                                
+                        w.send(packet)
+
+            # กรณีที่ไม่สามารถใช้งาน WinDivert ได้
+            except Exception as e:
+                print(f'Error : Could not open WinDivert! ({e})')
+                time.sleep(1)
+                exit(1)
                     
         # ไม่สามารถใช้โปรแกรมได้
         else:
