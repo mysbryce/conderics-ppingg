@@ -88,4 +88,4 @@ class App:
         ctypes.windll.kernel32.SetConsoleTitleW(f'Ping Loader : {title}')
         
 if __name__ == '__main__':
-    App()
+    App() 

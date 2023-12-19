@@ -13,4 +13,4 @@
 - [PyInstaller](https://pyinstaller.org/en/stable/) (Optional)
 
 ## Contributors
-- Bryce Conderics [Facebook](https://facebook.com/justbryces)
+- Bryce Conderics [Facebook](https://facebook.com/justbryces) 
